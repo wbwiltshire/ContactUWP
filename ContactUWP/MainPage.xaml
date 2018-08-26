@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="SeagullConsulting.ContactUWP.App.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SeagullConsulting.ContactUWP.App"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="MainPage_Loaded"
+    Background="{ThemeResource  ApplicationPageBackgroundThemeBrush}">
+
+     <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+          <VisualStateManager.VisualStateGroups>
+               <VisualStateGroup>
+                    <VisualState>
+                         <VisualState.StateTriggers>
+                              <AdaptiveTrigger MinWindowWidth="{x:Bind NavView.CompactModeThresholdWidth}" />
+                         </VisualState.StateTriggers>
+
+                         <VisualState.Setters>
+                              <Setter Target="NavView.PaneDisplayMode" Value="Top"/>
+                         </VisualState.Setters>
+                    </VisualState>
+               </VisualStateGroup>
+          </VisualStateManager.VisualStateGroups>
+
+          <NavigationView x:Name="NavView"
+                    ItemInvoked="NavView_ItemInvoked"
+                    IsSettingsVisible="True"
+                    Loaded="NavView_Loaded"
+                    BackRequested="NavView_BackRequested"
+                    Header="Contact UWP">
+
+               <NavigationView.MenuItems>
+                    <NavigationViewItem Icon="Contact" Content="Contacts" x:Name="contacts" Tag="contacts"/>
+                    <NavigationViewItem Icon="Help" Content="About" x:Name="about" Tag="about"/>
+               </NavigationView.MenuItems>
+
+               <NavigationView.HeaderTemplate>
+                    <DataTemplate>
+                         <Grid Margin="24,10,0,0">
+                              <Grid.ColumnDefinitions>
+                                   <ColumnDefinition Width="Auto"/>
+                                   <ColumnDefinition/>
+                              </Grid.ColumnDefinitions>
+                              <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                                   FontSize="28"
+                                   VerticalAlignment="Center"
+                                   Text="Contact UWP"/>
+                              <CommandBar Grid.Column="1"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Top"
+                                   DefaultLabelPosition="Right"
+                                   Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                              <AppBarButton Click="Refresh_Click" Label="Refresh" Icon="Refresh"/>
+                              </CommandBar>
+                         </Grid>
+                    </DataTemplate>
+               </NavigationView.HeaderTemplate>
+
+               <Frame x:Name="ContentFrame" Margin="24"/>
+
+          </NavigationView>
+     </Grid>
+</Page>

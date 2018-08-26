@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="SeagullConsulting.ContactUWP.App.ContactsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SeagullConsulting.ContactUWP.App"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:data="using:SeagullConsulting.ContactUWP.Data.POCO"
+    Loaded="ContactPage_Loaded"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+          <controls:DataGrid x:Name="contactListGrid" 
+               Height="600" Margin="12"
+               AutoGenerateColumns="False"
+               AlternatingRowBackground="{ThemeResource SystemControlBackgroundListMediumBrush}"
+               ItemsSource="{x:Bind Contacts, Mode=OneWay}">
+               <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn 
+                         Header="Id" 
+                         Width="Auto"
+                         Binding="{Binding Id}" />
+                    <controls:DataGridTextColumn 
+                         Header="First Name" 
+                         Width="Auto"
+                         Binding="{Binding FirstName}"  />
+                    <controls:DataGridTextColumn 
+                         Header="Last Name"
+                         Width="Auto"
+                         Binding="{Binding LastName}" />
+                    <controls:DataGridTextColumn 
+                         Header="EMail"
+                         Width="Auto"
+                         Binding="{Binding EMail}" />
+                    <controls:DataGridTextColumn 
+                         Header="City"
+                         Width="Auto"
+                         Binding="{Binding City.Name}" />
+                    <controls:DataGridTextColumn 
+                         Header="State"
+                         Width="Auto"
+                         Binding="{Binding City.State.Name}" />
+               </controls:DataGrid.Columns>
+          </controls:DataGrid>
+     </Grid>
+</Page>

@@ -1,0 +1,25 @@
+1. New->Project->C#->Windows Universal->Blank App(Universal Windows)
+2. Add Nuget packages
+   . Microsoft.Toolkit.Uwp.UI.Controls
+   . Microsoft.Toolkit.Uwp.UI.Controls.DataGrid
+   . Microsoft.UI.Xaml (Pre-release NavigationView)
+3. Links
+   . NavigationView: https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/navigationview
+   . DataGrid: https://github.com/Microsoft/WindowsCommunityToolkit
+   
+4. CodeBehind for data update notification (Add INotifyPropertyChanged inheritance to Page class)
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ICollection<Contact> Contacts {
+            get
+            {
+                return entities.ToList();
+            }
+            // Raise the PropertyChangedEvent, so the DataGrid will update
+            // Note: DataGrid ItemsSource with x:Bind defaults to a Mode of "OneTime" Binding
+            //       You must Change Mode to "OneWay" for data updates to work
+            set {
+                entities = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Contacts"));
+            }
+        }
