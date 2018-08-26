@@ -1,4 +1,4 @@
-#ContactUWP
+ContactUWP
 ===
 
 A simple Universal Windows Program (UWP) to display a customer list using a NavigationView and a DataGrid
@@ -13,3 +13,5 @@ To Do:
 * Sort Contacts
 * Search Contacts
 * Contact Settings
+
+![ContactUWP screenshot](ScreenShot.png)
